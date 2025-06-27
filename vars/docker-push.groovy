@@ -1,7 +1,7 @@
 def call(String dockeercread-id, String imageName){
 
     withCredentials([usernamePassword(
-            credentialsId: "${dockeercread-id}", 
+            credentialsId: '${dockeercread-id}', 
             usernameVariable: 'DOCKER_USER', 
             passwordVariable: 'DOCKER_PASS')]) {
             
