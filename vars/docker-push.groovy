@@ -1,12 +1,11 @@
-def call(String dockeercread-id, String imageName){
-
+def call(String dockerCredId, String imageName) {
     withCredentials([usernamePassword(
-            credentialsId: '${dockeercread-id}', 
+           credentialsId: dockerCredId, 
             usernameVariable: 'DOCKER_USER', 
             passwordVariable: 'DOCKER_PASS')]) {
             
-                sh "docker login -u ${env.DOCKER_USER} -p ${env.DOCKER_PASS}" 
-                sh "docker image tag "${imageName}":latest ${env.DOCKER_USER}/"${imageName}"
-                sh "docker push ${env.DOCKER_USER}/${imageName}:latest"
+                sh "docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}" 
+                sh "docker image tag ${imageName}:latest ${DOCKER_USER}/${imageName}:latest"
+                sh "docker push ${DOCKER_USER}/${imageName}:latest"
         }
 }
